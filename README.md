@@ -63,9 +63,35 @@ MyFormApp is a premium ASP.NET Core MVC web application designed to demonstrate 
 2. **Validation Errors:** Try submitting the form empty, or with an invalid email address format. You should see red validation error messages appear instantly.
 3. **PRG Pattern Check:** After a successful submission, press `F5` or the refresh button on your browser while on the Summary page. You will not get a "Confirm Form Resubmission" prompt, proving the PRG pattern is working correctly.
 
+## 🐳 Deployment & Containerization (Docker)
+
+This application is fully containerized using **Docker** for standardized, production-ready deployments.
+
+### 1. Build the Docker Image
+To package the application into a self-contained Docker container, run the following command from the root directory:
+```bash
+docker build -t myformapp:latest .
+```
+
+### 2. Run the Container Locally
+Once built, you can spin up the application in a lightweight container:
+```bash
+docker run -d -p 8080:8080 --name myformapp_instance myformapp:latest
+```
+*Access the application at `http://localhost:8080`.*
+
+### ☁️ Hosting in the Cloud (Free Docker Providers)
+You can deploy this containerized app completely for free using modern cloud hosting platforms:
+
+* **Render (Free Tier)**: Create a Web Service, link your GitHub repository, choose **Docker** as the environment, and Render will automatically build the container and deploy it publicly.
+* **Railway (Free/Developer Trial)**: Sign up, connect your GitHub, and drag-and-drop the repository. Railway will detect the `Dockerfile` and publish your app automatically.
+* **Fly.io**: Install the Fly CLI, run `fly launch`, and it will build and deploy the container to their global edge hosting network.
+
+---
+
 ## 💻 Technologies Used
 
-- **Backend:** C#, ASP.NET Core MVC 8.0
+- **Backend:** C#, ASP.NET Core MVC 9.0 (with Docker containerization)
 - **Frontend:** HTML5, CSS3, Razor Views
 - **Frameworks:** Bootstrap (for responsive grid and base components)
 - **Serialization:** `System.Text.Json` (for TempData state management)
