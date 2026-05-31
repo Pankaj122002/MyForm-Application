@@ -1,0 +1,117 @@
+@model MyFormApp.Models.UserFormModel
+
+@{
+    ViewData["Title"] = "Submit Your Details";
+}
+
+<div class="page-wrapper">
+    <div class="form-container animate-fade-in">
+        <!-- Header -->
+        <div class="form-header">
+            <div class="form-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+            </div>
+            <h1 class="form-title">Get in Touch</h1>
+            <p class="form-subtitle">Fill in your details below and we'll get back to you shortly.</p>
+        </div>
+
+        <!-- Form -->
+        <form asp-controller="Form" asp-action="Submit" method="post" id="userForm">
+            <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+
+            <!-- Name Row -->
+            <div class="form-row">
+                <div class="form-group animate-slide-up" style="animation-delay: 0.1s;">
+                    <label asp-for="FirstName" class="form-label">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        First Name <span class="required">*</span>
+                    </label>
+                    <input asp-for="FirstName" class="form-input" placeholder="Enter your first name" id="inputFirstName" />
+                    <span asp-validation-for="FirstName" class="field-validation-error"></span>
+                </div>
+
+                <div class="form-group animate-slide-up" style="animation-delay: 0.15s;">
+                    <label asp-for="LastName" class="form-label">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        Last Name <span class="required">*</span>
+                    </label>
+                    <input asp-for="LastName" class="form-input" placeholder="Enter your last name" id="inputLastName" />
+                    <span asp-validation-for="LastName" class="field-validation-error"></span>
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group animate-slide-up" style="animation-delay: 0.2s;">
+                <label asp-for="Email" class="form-label">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    Email Address <span class="required">*</span>
+                </label>
+                <input asp-for="Email" class="form-input" placeholder="you@example.com" id="inputEmail" />
+                <span asp-validation-for="Email" class="field-validation-error"></span>
+            </div>
+
+            <!-- Phone -->
+            <div class="form-group animate-slide-up" style="animation-delay: 0.25s;">
+                <label asp-for="PhoneNumber" class="form-label">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    Phone Number
+                </label>
+                <input asp-for="PhoneNumber" class="form-input" placeholder="+91 98765 43210" id="inputPhone" />
+                <span asp-validation-for="PhoneNumber" class="field-validation-error"></span>
+            </div>
+
+            <!-- Message -->
+            <div class="form-group animate-slide-up" style="animation-delay: 0.3s;">
+                <label asp-for="Message" class="form-label">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    Message
+                </label>
+                <textarea asp-for="Message" class="form-input form-textarea" placeholder="Write your message here..." rows="4" id="inputMessage"></textarea>
+                <span asp-validation-for="Message" class="field-validation-error"></span>
+                <div class="char-counter"><span id="charCount">0</span> / 500</div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-actions animate-slide-up" style="animation-delay: 0.35s;">
+                <button type="submit" class="btn-submit" id="btnSubmit">
+                    <span class="btn-text">Submit Details</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        // Character counter for message field
+        const messageField = document.getElementById('inputMessage');
+        const charCount = document.getElementById('charCount');
+        if (messageField && charCount) {
+            messageField.addEventListener('input', function () {
+                charCount.textContent = this.value.length;
+                if (this.value.length > 450) {
+                    charCount.parentElement.classList.add('warning');
+                } else {
+                    charCount.parentElement.classList.remove('warning');
+                }
+            });
+        }
+
+        // Add focus animations
+        document.querySelectorAll('.form-input').forEach(input => {
+            input.addEventListener('focus', function () {
+                this.parentElement.classList.add('focused');
+            });
+            input.addEventListener('blur', function () {
+                this.parentElement.classList.remove('focused');
+            });
+        });
+    </script>
+}
